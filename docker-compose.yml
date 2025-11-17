@@ -10,8 +10,8 @@ services:
     environment:
       - COMPOSER_HOME=/composer
       - COMPOSER_ALLOW_SUPERUSER=1
-      - CORREIOS_USER=13774752710
-      - CORREIOS_PASS=Jlbs25!!89ktg91
+      - CORREIOS_USER=usuario_dos_correios
+      - CORREIOS_PASS=senha_dos_correios
     networks:
       application-network:
         ipv4_address: 172.18.0.2
