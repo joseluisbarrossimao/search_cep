@@ -1,0 +1,68 @@
+services:
+  php:
+    container_name: php_server
+    image: zezinho2511/php-composer-required-extensions
+    restart: always
+    working_dir: /var/www
+    volumes:
+      - ./application/backend:/var/www
+      - ./docker/php/php.ini:/usr/local/etc/php/php.ini
+    environment:
+      - COMPOSER_HOME=/composer
+      - COMPOSER_ALLOW_SUPERUSER=1
+      - CORREIOS_USER=13774752710
+      - CORREIOS_PASS=Jlbs25!!89ktg91
+    networks:
+      application-network:
+        ipv4_address: 172.18.0.2
+    ports:
+      - "8080:9000"
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: "4GB"
+
+  backend:
+    container_name: backend_server
+    image: zezinho2511/nginx-two-ports
+    restart: always
+    ports:
+      - "8000:80"
+    volumes:
+      - ./application/backend:/var/www
+      - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    networks:
+      application-network:
+        ipv4_address: 172.18.0.3
+    environment:
+      - PHP_STREAM=php_sever:9000
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: "4GB"
+
+  frontend:
+    container_name: frontend_server
+    image: nginx:1.26
+    restart: always
+    ports:
+      - "5173:80"
+    volumes:
+      - ./application/frontend:/usr/share/nginx/html:ro
+    networks:
+      application-network:
+        ipv4_address: 172.18.0.5
+    deploy:
+      resources:
+        limits:
+          cpus: "4.0"
+          memory: "4GB"
+
+networks:
+  application-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16

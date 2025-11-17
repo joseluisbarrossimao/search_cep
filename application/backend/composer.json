@@ -1,0 +1,15 @@
+{
+    "name": "root/www",
+    "type": "library",
+    "license": "mit",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Search\\": "Search/",
+            "App\\": "src/"
+        }
+    }
+}

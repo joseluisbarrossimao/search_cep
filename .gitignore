@@ -1,0 +1,5 @@
+/application/backend/vendor
+/docker/node
+/docker/mysql
+/docker/nginx/certificates
+/docker/nginx/dockerfile
