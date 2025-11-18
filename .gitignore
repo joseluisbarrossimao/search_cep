@@ -3,3 +3,4 @@
 /docker/mysql
 /docker/nginx/certificates
 /docker/nginx/dockerfile
+/docker/php/dockerfile
